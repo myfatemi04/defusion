@@ -15,8 +15,8 @@ function useForceUpdate() {
 
 const tried = new Set();
 
-const intervalAtBeginning = 2000;
-const intervalAtEnd = 1000;
+const intervalAtBeginning = 1500;
+const intervalAtEnd = 875;
 
 function shuffle(array) {
   let currentIndex = array.length,
@@ -84,11 +84,11 @@ function App() {
     if (tried.length === availablePrompts.length) {
       tried.clear();
     }
-    let seqId = Math.floor(Math.random() * availablePrompts.length);
-    while (tried.has(seqId)) {
-      seqId = Math.floor(Math.random() * availablePrompts.length);
+    let idx = Math.floor(Math.random() * availablePrompts.length);
+    while (tried.has(availablePrompts[idx])) {
+      idx = Math.floor(Math.random() * availablePrompts.length);
     }
-    setSeqId(seqId);
+    setSeqId(availablePrompts[idx]);
 
     function addTimeout(delay) {
       clearTimeout(timerId.current);
