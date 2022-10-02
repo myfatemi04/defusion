@@ -6,7 +6,7 @@ const TOTAL_SEQUENCE_LENGTH = 51;
 const START_INDEX = 10;
 const TIME_STEPS = TOTAL_SEQUENCE_LENGTH - START_INDEX;
 
-const availablePrompts = [0, 1, 2, 3, 4, 5, 50];
+const availablePrompts = [0, 1, 2, 3, 4, 5, 50, 51, 100];
 
 function useForceUpdate() {
   const update = useState(0)[1];
