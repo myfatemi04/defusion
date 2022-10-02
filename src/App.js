@@ -89,6 +89,7 @@ function App() {
       idx = Math.floor(Math.random() * availablePrompts.length);
     }
     setSeqId(availablePrompts[idx]);
+    setGuess("");
 
     function addTimeout(delay) {
       clearTimeout(timerId.current);
@@ -99,13 +100,17 @@ function App() {
             clearTimeout(timerId.current);
             return idx + 1;
           }
-          addTimeout(((idx - START_INDEX + 1) / TIME_STEPS) * (intervalAtEnd - intervalAtBeginning) + intervalAtBeginning);
+          addTimeout(
+            ((idx - START_INDEX + 1) / TIME_STEPS) *
+              (intervalAtEnd - intervalAtBeginning) +
+              intervalAtBeginning
+          );
           return idx + 1;
         });
       }, delay);
     }
 
-    addTimeout(intervalAtBeginning)
+    addTimeout(intervalAtBeginning);
 
     setStartTime(Date.now());
   }, [forceTimerUpdate, setSeqId]);
@@ -174,7 +179,7 @@ function App() {
             <img
               src={`/images/${seqId}/image_${Math.min(
                 idx,
-                TOTAL_SEQUENCE_LENGTH
+                TOTAL_SEQUENCE_LENGTH - 1
               )}.png`}
               alt=""
               style={{
@@ -211,7 +216,7 @@ function App() {
           )}
           <div style={{ marginTop: "10px", marginBottom: "10px" }}>
             {started ? (
-              (!ended && (stepsRemaining > 0)) ? (
+              !ended && stepsRemaining > 0 ? (
                 <button onClick={end}>Submit</button>
               ) : (
                 <>
@@ -242,6 +247,28 @@ function App() {
           </div>
         </div>
       </header>
+      <div style={{ color: "white", backgroundColor: "black" }}>
+        <h1>How do diffusion models work?</h1>
+        <p>
+          Models are trained to "hallucinate" images that match a text prompt.
+        </p>
+        <p>
+          The model generates images that progressively improve a metric of
+          similarity between text and images.
+        </p>
+        <p>
+          The similarity metric is based on <code>CLIP/ViT14-L</code>, a model
+          meant to score how well an image matches a given caption.
+        </p>
+        <p>
+          Then, a <code>U-Net</code> is used to determine which parts of the
+          image should change to make it match the caption better.
+        </p>
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
     </div>
   );
 }

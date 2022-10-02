@@ -1,6 +1,6 @@
 export const prompts = [
-	"A horse in a field at sunrise with a rainbow in the background",
-	"An award-winning professional photo of a marmot skiing in the Alps",
+  "A horse in a field at sunrise with a rainbow in the background",
+  "An award-winning professional photo of a marmot skiing in the Alps",
   "A baby eating an apple on a hill during the day",
   "A sheep eating a box on a hill during the day",
   "A horse using an apple in a pond at night",
@@ -99,4 +99,5 @@ export const prompts = [
   "An elephant making a pizza on a hill during the day",
   "A fox sitting on an avocado next to the white house during christmas",
   "A lion eating a box under a rainbow in the morning",
+  "A person solving a Rubik's cube at MIT",
 ];
